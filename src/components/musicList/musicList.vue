@@ -105,6 +105,10 @@ export default {
         type: Number,
         default: 0
       },
+      picHeight:{
+        type: Number,
+        default: 0
+      },
       titleShow: false,
       mark: 0,
       moreShow: false
@@ -198,6 +202,9 @@ export default {
     console.log(this.sheet)
     console.log(this.authSheet)
   },
+  mounted(){
+    this.picHeight = this.$refs.pic.clientHeight
+  },
   watch:{
     bgImage: function(){
       // this.$props.bgImage = this.$props.bgImage+'?param=400y400'
@@ -206,7 +213,11 @@ export default {
     },
     posY(){
         let pos = Math.max(this.posY,-200)
-        this.$refs.pic.style.transform = `translateY(${pos}px)`
+        console.log(this.$refs.pic.clientHeight)
+        console.log(pos)
+        let clip = this.picHeight+pos
+        console.log(this.picHeight)
+        clip>30?this.$refs.pic.style.transform = `translateY(${pos}px)`:this.$refs.pic.style.transform = `translateY(${30-this.picHeight}px)`
         this.$refs.pic.style.filter = 'blur(2px)'
         this.$refs.name.style.opacity = 1-(this.posY/-200)
         pos < -190?(this.titleShow = true, this.$refs.pic.style.filter = 'blur(2px)'):(this.titleShow = false, this.$refs.pic.style.filter = 'blur(0)')

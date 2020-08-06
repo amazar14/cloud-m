@@ -71,7 +71,7 @@ import {mapGetters,mapMutations} from 'vuex'
 export default {                
   data(){
     return{
-      index: 0,
+      index: 20,
       comments:[],
       date:[]
     }
@@ -130,7 +130,8 @@ export default {
 
         this.time(this.comment.hotComments)  //整理时间
         // this._getComment()
-        this.comment.hotComments.length<1?this._getComment():null//上拉加载的评论
+        // this.comment.hotComments.length<1?this._getComment():null//上拉加载的评论
+        this._getComment()
         console.log('loadddddddddddd')
         console.log(this.$route.params)
         // this._getComment()

@@ -165,7 +165,9 @@ export default {
         this.setSong(this.currentSong)
         this.$router.push({
           name: `${this.type}Comment`,
-          params: this.currentSong.id
+          params: {
+            id:this.currentSong.id
+            }
         })
       })
     },
